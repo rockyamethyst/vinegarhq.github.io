@@ -137,7 +137,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="configuration"><a class="header" href="#configuration">Configuration</a></h1>
-<p>To change Vinegar's behavior, edit the <code>config.toml</code> file at <code>~/.config/vinegar/config.toml</code> (or <code>~/.var/app/io.github.vinegarhq.Vinegar/config/vinegar/config.toml</code> if you're using the Flatpak.).</p>
+<p>To change Vinegar's behavior, edit the <code>config.toml</code> file at <code>~/.config/vinegar/config.toml</code> (or <code>~/.var/app/io.github.vinegarhq.Vinegar/config/vinegar/config.toml</code> if you're using the Flatpak), ensure that you have created the configuration directory first, as it is not created by default (eg. <code>~/.config/vinegar</code>)</p>
 <p>Anything added to the configuration file is an override over the default values (the default configuration file can be seen <a href="https://github.com/vinegarhq/vinegar/blob/master/internal/config/config.toml">here</a>) which are designed to be the best for the average user. Editing the configuration file allows you to tune your performance or apply other customizations.</p>
 <h2 id="configuration-values"><a class="header" href="#configuration-values">Configuration Values</a></h2>
 <p>This section will explain what each value in the global configuration file represents.</p>
@@ -162,6 +162,7 @@
 <li>When using DXVK, ensure that the renderer is <code>&quot;D3D11&quot;</code>, otherwise Roblox will not utilize DXVK.</li>
 <li><code>app</code> in <code>[app.fflags]</code> or <code>[app.env]</code>, should be renamed to <code>player</code> or <code>studio</code>, eg. <code>[player.fflags]</code>.</li>
 <li><code>DFIntTaskSchedulerTargetFps</code> is set to <code>640</code> by default for Player; if you also want to change the FPS limit you may set the FFlag's value to your requested limit (eg. <code>30</code>)</li>
+<li>If you're using the Flatpak, ensure that the path of the <code>wineroot</code> configuration option is allowed access from the Flatpak, as if it is a path outside of <code>~/.var/app/io.github.vinegarhq.Vinegar</code> Vinegar won't be able to access the directory: <code>flatpak override --user --filesystem=/path/to/wineroot</code></li>
 </ul>
 <h3 id="example-configuration"><a class="header" href="#example-configuration">Example configuration</a></h3>
 <pre><code class="language-toml">wineroot = &quot;/home/meow/wine-ge&quot;
