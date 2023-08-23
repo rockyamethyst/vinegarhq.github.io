@@ -139,7 +139,10 @@
                         <h1 id="configuration"><a class="header" href="#configuration">Configuration</a></h1>
 <p>To change Vinegar's behavior, edit the <code>config.toml</code> file at <code>~/.config/vinegar/config.toml</code> (or <code>~/.var/app/io.github.vinegarhq.Vinegar/config/vinegar/config.toml</code> if you're using the Flatpak), ensure that you have created the configuration directory first, as it is not created by default (eg. <code>~/.config/vinegar</code>)</p>
 <p>For your convenience, you may use the editor feature by running <code>vinegar edit</code> (or <code>flatpak run io.github.vinegarhq.Vinegar editor</code> if you're using the Flatpak).</p>
-<p>Anything added to the configuration file is an override over the default values (the default configuration file can be seen <a href="https://github.com/vinegarhq/vinegar/blob/master/internal/config/config.toml">here</a>) which are designed to be the best for the average user. Editing the configuration file allows you to tune your performance or apply other customizations.</p>
+<p>Anything added to the configuration file is an override over the default values (the default configuration file can be seen <a href="https://github.com/vinegarhq/vinegar/blob/master/internal/config/config.toml">here</a>) which are designed to be the best for the average user.</p>
+<blockquote>
+<p><strong>Note:</strong> You only need to edit the configuration file if you want to fine tune Roblox's behavior. Having a configuration file is completely optional!</p>
+</blockquote>
 <h2 id="configuration-values"><a class="header" href="#configuration-values">Configuration Values</a></h2>
 <p>This section will explain what each value in the global configuration file represents.</p>
 <table><thead><tr><th>Option</th><th>Description</th><th>Default</th></tr></thead><tbody>
@@ -166,6 +169,9 @@
 <li>If you're using the Flatpak, ensure that the path of the <code>wineroot</code> configuration option is allowed access from the Flatpak, as if it is a path outside of <code>~/.var/app/io.github.vinegarhq.Vinegar</code> Vinegar won't be able to access the directory: <code>flatpak override --user --filesystem=/path/to/wineroot</code></li>
 </ul>
 <h3 id="example-configuration"><a class="header" href="#example-configuration">Example configuration</a></h3>
+<blockquote>
+<p><strong>Note:</strong> The following configuration file is not meant to be copied or used. It is only shown for demonstrating how the configuration values above are laid out in the actual file.</p>
+</blockquote>
 <pre><code class="language-toml">wineroot = &quot;/home/meow/wine-ge&quot;
 launcher = &quot;gamemoderun&quot;
 
