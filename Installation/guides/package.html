@@ -144,11 +144,14 @@ cd vinegar
 makepkg -si
 </code></pre>
 <h3 id="gentoo"><a class="header" href="#gentoo">Gentoo</a></h3>
-<p>You will need to add the Vinegar overlay:</p>
+<p>Firstly, make sure the repository module for eselect is installed:</p>
+<pre><code class="language-sh">emerge app-eselect/eselect-repository
+</code></pre>
+<p>Then you will need to add the Vinegar overlay:</p>
 <pre><code class="language-sh">eselect repository add &quot;vinegar&quot; git https://github.com/vinegarhq/ebuild.git
 emaint sync
 </code></pre>
-<p>And then emerge the package:</p>
+<p>And emerge the package:</p>
 <pre><code class="language-sh">emerge -av games-util/vinegar
 </code></pre>
 <p>Alternatively, you can use the live ebuild by creating a <code>/etc/portage/package.accept_keywords/vinegar</code> file with the following content:</p>
