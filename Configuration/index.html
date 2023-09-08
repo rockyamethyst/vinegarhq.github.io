@@ -74,7 +74,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../Home/index.html"><strong aria-hidden="true">1.</strong> Home</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Home/faq.html"><strong aria-hidden="true">1.1.</strong> FAQ</a></li></ol></li><li class="chapter-item expanded "><a href="../Installation/index.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Installation/guides/source.html"><strong aria-hidden="true">2.1.</strong> Installing from source</a></li><li class="chapter-item expanded "><a href="../Installation/guides/flatpak.html"><strong aria-hidden="true">2.2.</strong> Installing from Flatpak</a></li><li class="chapter-item expanded "><a href="../Installation/guides/package.html"><strong aria-hidden="true">2.3.</strong> Installing from package</a></li></ol></li><li class="chapter-item expanded "><a href="../Configuration/index.html" class="active"><strong aria-hidden="true">3.</strong> Configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Configuration/tips-and-tricks/index.html"><strong aria-hidden="true">3.1.</strong> Tips and tricks</a></li></ol></li><li class="chapter-item expanded "><a href="../Multiple-instances/index.html"><strong aria-hidden="true">4.</strong> Multiple instances</a></li><li class="chapter-item expanded "><a href="../Contributing/index.html"><strong aria-hidden="true">5.</strong> Contributing</a></li><li class="chapter-item expanded "><a href="../Troubleshooting/index.html"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../Home/index.html"><strong aria-hidden="true">1.</strong> Home</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Home/faq.html"><strong aria-hidden="true">1.1.</strong> FAQ</a></li></ol></li><li class="chapter-item expanded "><a href="../Installation/index.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Installation/guides/source.html"><strong aria-hidden="true">2.1.</strong> Installing from source</a></li><li class="chapter-item expanded "><a href="../Installation/guides/flatpak.html"><strong aria-hidden="true">2.2.</strong> Installing from Flatpak</a></li><li class="chapter-item expanded "><a href="../Installation/guides/package.html"><strong aria-hidden="true">2.3.</strong> Installing from package</a></li></ol></li><li class="chapter-item expanded "><a href="../Configuration/index.html" class="active"><strong aria-hidden="true">3.</strong> Configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../Configuration/tips-and-tricks/index.html"><strong aria-hidden="true">3.1.</strong> Tips and tricks</a></li></ol></li><li class="chapter-item expanded "><a href="../Contributing/index.html"><strong aria-hidden="true">4.</strong> Contributing</a></li><li class="chapter-item expanded "><a href="../Troubleshooting/index.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -150,29 +150,32 @@
 <h3 id="manually"><a class="header" href="#manually">Manually</a></h3>
 <p>The configuration file, <code>config.toml</code>, is read from <code>~/.config/vinegar/config.toml</code> (or <code>~/.var/app/io.github.vinegarhq.Vinegar/config/vinegar/config.toml</code> if using the Flatpak). It may be edited using any text editor (such as <code>nano</code>). First ensure the <code>config/vinegar</code> directory is created.</p>
 <h2 id="configuration-values"><a class="header" href="#configuration-values">Configuration Values</a></h2>
-<p>This section will explain what each value in the global configuration file represents.</p>
 <table><thead><tr><th>Option</th><th>Description</th><th>Default</th></tr></thead><tbody>
 <tr><td><code>launcher</code></td><td>the program that is used to launch Wine when launching Roblox; this can be set to <code>gamemoderun</code>.</td><td>none</td></tr>
-<tr><td><code>wineroot</code></td><td>the path to a valid Wine 'root' installation directory.</td><td>none</td></tr>
+<tr><td><code>wineroot</code></td><td>the path to a valid Wine 'root' installation directory. For Flatpak users; see Notes.</td><td>none</td></tr>
+<tr><td><code>dxvk_version</code></td><td>the DXVK version to be used; this can be set to legacy DXVK for old GPUs that don't support modern Vulkan.</td><td><code>&quot;2.3&quot;</code></td></tr>
+<tr><td><code>multiple_instances</code></td><td>allow for multiple instances of Roblox to be running simultaneously</td><td><code>false</code></td></tr>
+<tr><td><code>sanitize_env</code></td><td>sanitize the global environment, hand-picked variables are allowed through.</td><td><code>false</code></td></tr>
 </tbody></table>
-<p>For Studio or Player configurations, you will need to specify it as a table, an example can be seen below.</p>
+<p>For Studio or Player configurations, they are specified under the <code>[player]</code> or <code>[studio]</code> section.</p>
 <table><thead><tr><th>Option</th><th>Description</th><th>Default</th></tr></thead><tbody>
 <tr><td><code>channel</code></td><td>the Roblox release channel</td><td><code>&quot;live&quot;</code></td></tr>
-<tr><td><code>renderer</code></td><td>selects the rendering engine to be used by Roblox via FFlags.</td><td><code>&quot;D3D11&quot;</code></td></tr>
+<tr><td><code>renderer</code></td><td>selects the rendering engine to be used by Roblox via FFlags. See Notes for accepted renders.</td><td><code>&quot;D3D11&quot;</code></td></tr>
 <tr><td><code>forced_version</code></td><td>forces Vinegar to use a specific version, the release channel must be adjusted for the version.</td><td>none</td></tr>
 <tr><td><code>auto_kill_prefix</code></td><td>tells Vinegar to automatically kill the wineprefix after the application closes.</td><td>Player: <code>true</code>, Studio: <code>false</code></td></tr>
 <tr><td><code>dxvk</code></td><td>automatically uses DXVK for the application and installs if necessary.</td><td>Player: <code>true</code>, Studio: <code>false</code></td></tr>
-<tr><td><code>[app.fflags]</code></td><td>the table used to set FFlags for the given application type.</td><td>See below.</td></tr>
-<tr><td><code>[app.env]</code></td><td>the table used to set environment variables for the given application type.</td><td>Player: <code>DXVK_HUD=fps</code></td></tr>
+</tbody></table>
+<p>Sub-sections for FFlags and environment variables for Player or Studio are specified as <code>[player.env]</code>/<code>[studio.env]</code> or <code>[player.fflags]</code>/<code>[studio.fflags]</code></p>
+<table><thead><tr><th>Sub-section</th><th>Description</th><th>Default</th></tr></thead><tbody>
+<tr><td><code>[fflags]</code></td><td>the sub-section used to set FFlags for the given application type.</td><td>Player: <code>DFIntTaskSchedulerTargetFps = 640</code></td></tr>
+<tr><td><code>[env]</code></td><td>the sub-section used to set environment variables for the given application type.</td><td>Player: <code>DXVK_HUD = &quot;fps&quot;</code></td></tr>
 </tbody></table>
 <h3 id="notes"><a class="header" href="#notes">Notes</a></h3>
 <ul>
 <li>If you're using Nvidia PRIME, the drivers (on X server 1.20.7 and newer) and/or dxvk should automatically use your dGPU by default.</li>
-<li><code>renderer</code> must be one of the following: <code>&quot;OpenGL&quot;</code>, <code>&quot;D3D11FL10&quot;</code>, <code>&quot;D3D11&quot;</code>, <code>&quot;Vulkan&quot;</code>.</li>
+<li>The renderer must be one of the following: <code>&quot;OpenGL&quot;</code>, <code>&quot;D3D11FL10&quot;</code>, <code>&quot;D3D11&quot;</code>, <code>&quot;Vulkan&quot;</code>.</li>
 <li>Ensure that when setting a string, the value must be in quotes: <code>channel = &quot;zintegration&quot;</code></li>
 <li>When using DXVK, ensure that the renderer is <code>&quot;D3D11&quot;</code>, otherwise Roblox will not utilize DXVK.</li>
-<li><code>app</code> in <code>[app.fflags]</code> or <code>[app.env]</code>, should be renamed to <code>player</code> or <code>studio</code>, eg. <code>[player.fflags]</code>.</li>
-<li><code>DFIntTaskSchedulerTargetFps</code> is set to <code>640</code> by default for Player; if you also want to change the FPS limit you may set the FFlag's value to your requested limit (eg. <code>30</code>)</li>
 <li>If you're using the Flatpak, ensure that the path of the <code>wineroot</code> configuration option is allowed access from the Flatpak, as if it is a path outside of <code>~/.var/app/io.github.vinegarhq.Vinegar</code> Vinegar won't be able to access the directory: <code>flatpak override --user --filesystem=/path/to/wineroot</code></li>
 </ul>
 <h3 id="example-configuration"><a class="header" href="#example-configuration">Example configuration</a></h3>
