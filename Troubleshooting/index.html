@@ -142,6 +142,7 @@
 <p>This is due to a Roblox update causing an incompatibility with Wayland's handling of mouse events via XWayland. Switching to X11 on your display manager fixes this issue.</p>
 <h4 id="white-screen"><a class="header" href="#white-screen">White Screen</a></h4>
 <p>This specific problem can be the same as many other root causes, a common one is your graphics card not supporting Vulkan, or is missing the graphics libraries required for Wine; you can see <a href="https://github.com/lutris/docs/blob/master/InstallingDrivers.md">Lutris Docs: Installing Drivers</a></p>
+<p>This may also be your GPU not supporting Vulkan or not supporting modern Vulkan; Use the OpenGL renderer, or set the installed DXVK version to one which includes a legacy version of Vulkan that your GPU supports.</p>
 
                     </main>
 
